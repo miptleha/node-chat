@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <form name="chat">
+        <input type="text" name="message" maxlength="100"/>
+        <input type="submit" value="Send"/>
+    </form>
+    <pre id="result"></pre>
+
+    <script>
+        const url = 'ws://localhost:8080/ws';
+        console.log(`connect to ${url}`);
+        let ws = new WebSocket(url);
+
+        document.forms.chat.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var msg = this.message.value;
+            console.log(`send: ${msg}`);
+            ws.send(msg);
+        });
+
+        ws.addEventListener('message', function(e) {
+            let blob = e.data;
+            blob.text().then(msg => {
+                console.log(`receive: ${msg}`);
+                var pre = document.getElementById('result');
+                var node = document.createTextNode(msg + '\n');
+                pre.prepend(node);
+            })
+        });
+
+        ws.addEventListener('close', function(e) {
+            console.log(`close: ${e.code}`);
+        });
+
+    </script>
+</body>
+</html>

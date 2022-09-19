@@ -1,0 +1,26 @@
+{
+  "name": "node-chat",
+  "version": "1.0.0",
+  "description": "Node.JS chat application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miptleha/node-chat.git"
+  },
+  "keywords": [
+    "node",
+    "websocket"
+  ],
+  "author": "miptleha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miptleha/node-chat/issues"
+  },
+  "homepage": "https://github.com/miptleha/node-chat#readme",
+  "dependencies": {
+    "ws": "^8.8.1"
+  }
+}
